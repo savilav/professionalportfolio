@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Samuel Avila Varela | Portfolio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #f8f5ee;
+      color: #111;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* GENERAL LAYOUT */
+    section {
+      padding: 4rem 5%;
+      opacity: 0.6;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(25px);
+    }
+    section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1, h2, h3, h4 { color: #111; }
+    a { color: #111; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* HERO SECTION */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 90vh;
+      background: linear-gradient(180deg, #fdfbf6, #f8f5ee);
+      background-attachment: fixed; /* Parallax-like effect */
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      max-width: 650px;
+      color: #333;
+      font-size: 1.1rem;
+    }
+    .hero img {
+      margin-top: 2rem;
+      max-width: 220px;
+      border-radius: 50%;
+      border: 3px solid #111;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+    }
+
+    /* ABOUT SECTION */
+    .about p {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      color: #333;
+      font-size: 1.05rem;
+    }
+
+    /* SKILLS SECTION */
+    .skills h3, .projects h3, .certs h3, .resume h3, .contact h3 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .skill {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+    .skill:hover {
+      transform: scale(1.05);
+    }
+
+    /* PROJECTS */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .project-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    .project-card h4 {
+      margin-bottom: 0.5rem;
+    }
+    .project-card p {
+      color: #333;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    /* CERTIFICATIONS */
+    .certs ul {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+    }
+    .certs li {
+      margin: 0.5rem 0;
+      color: #333;
+    }
+
+    /* RESUME */
+    .resume {
+      text-align: center;
+    }
+    .resume a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: #111;
+      color: #fff;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+    .resume a:hover {
+      background: #333;
+    }
+
+    /* CONTACT */
+    footer {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 5%;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: #fff;
+    }
+
+    /* BACK TO TOP BUTTON */
+    #backToTop {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #111;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: opacity 0.3s ease;
+    }
+    #backToTop.show {
+      display: block;
+      opacity: 0.85;
+    }
+    #backToTop:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <h1>Samuel Avila Varela</h1>
+    <p>B.S. in Computer Information Systems — Focus in Information Systems<br>
+      California State University, Los Angeles</p>
+    <img src="https://via.placeholder.com/250" alt="Headshot placeholder">
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <h3>About Me</h3>
+    <p>I’m a Computer Information Systems student with a focus in Information Systems at California State University, Los Angeles. 
+    I enjoy designing solutions that combine technical knowledge with analytical reasoning. My coursework and projects have covered systems analysis, data visualization, and network architecture. 
+    I’m seeking an entry-level role in IT Support or Systems Analysis to apply these skills toward improving real-world business systems and technology workflows.</p>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills" id="skills">
+    <h3>Skills & Tools</h3>
+    <div class="skill-list">
+      <div class="skill">HTML / CSS / JavaScript</div>
+      <div class="skill">Excel / Tableau</div>
+      <div class="skill">SQL / Hive / Data Analytics</div>
+      <div class="skill">Network Design / VLANs</div>
+      <div class="skill">Figma / UI Design</div>
+      <div class="skill">Project & Risk Management</div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <h3>Featured Projects</h3>
+    <div class="project-grid">
+      <div class="project-card">
+        <h4>🏥 Diabetes Analysis Project</h4>
+        <p>Analyzed 10 years of hospital data using Excel & Tableau to identify key trends in diabetic patient hospital stays and outcomes.</p>
+        <a href="img/4200 - Diabetes Analysis Project.pdf" target="_blank">View Report</a>
+      </div>
+      <div class="project-card">
+        <h4>🏫 Blue Ridge College Network Design</h4>
+        <p>Designed a hybrid network topology emphasizing energy efficiency, virtualization, and scalability for a multi-campus college district.</p>
+        <a href="img/CIS 4100 Project .pdf" target="_blank">View PDF</a>
+      </div>
+      <div class="project-card">
+        <h4>🎓 Classroom Equipment Checkout System</h4>
+        <p>Developed system analysis models and a Figma prototype for an automated classroom equipment reservation application.</p>
+        <a href="https://www.figma.com/proto/MC9b90Thr4rDg8IdxiCGYB/Iteration--3--Final-Prototype?node-id=2-2&p=f&t=47LSjKzL4qgU2hsU-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2%3A2B" target="_blank">View Prototype</a>
+      </div>
+      <div class="project-card">
+        <h4>💻 CSULA KH B3018 Network Design</h4>
+        <p>Created a complete wired/wireless lab infrastructure plan with VLAN segmentation, security protocols, and disaster recovery strategies.</p>
+        <a href="img/NetworkReport.pdf" target="_blank">View Report</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="certs" id="certs">
+    <h3>Certifications</h3>
+    <ul>
+      <li>Currently preparing for <strong>CompTIA A+ Certification</strong> (in progress)</li>
+      <li>Future Goal: Google IT Support Professional Certificate</li>
+    </ul>
+  </section>
+
+  <!-- RESUME -->
+  <section class="resume" id="resume">
+    <h3>Résumé</h3>
+    <p>You can download my most recent résumé below for a complete overview of my education, experience, and projects.</p>
+    <a href="img/NewResume.pdf" download>Download Résumé (PDF)</a>
+  </section>
+
+  <!-- CONTACT -->
+  <footer id="contact">
+    <h3>Let’s Connect</h3>
+    <p>Email: <a href="mailto:savilav@calstatela.edu">savilav@calstatela.edu</a></p>
+    <p>© 2025 Samuel Avila Varela | CSULA College of Business & Economics</p>
+  </footer>
+
+  <button id="backToTop" title="Back to Top">↑</button>
+
+  <script>
+    // Fade-in for project cards
+    const cards = document.querySelectorAll('.project-card');
+    const cardObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    cards.forEach(card => cardObserver.observe(card));
+
+    // Section focus highlighting
+    const sections = document.querySelectorAll('section');
+    const focusObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          sections.forEach(sec => sec.classList.remove('active'));
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.5 });
+    sections.forEach(sec => focusObserver.observe(sec));
+
+    // Back to Top button
+    const topBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) topBtn.classList.add('show');
+      else topBtn.classList.remove('show');
+    });
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+</body>
+</html>
